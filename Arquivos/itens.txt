@@ -1,0 +1,4 @@
+2,Arroz,10.0
+3,Feijão,15.0
+4,Macarrão,30.0
+5,Batata Frita,50.0
