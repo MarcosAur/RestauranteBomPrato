@@ -1,5 +1,7 @@
 package model.exceptions;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author marcos
@@ -7,7 +9,7 @@ package model.exceptions;
 public class ArquivoCorrompidoException extends RuntimeException{
     
     public ArquivoCorrompidoException(String mensagem){
-        System.out.println("O programa possui arquivos corrompidos\n" + mensagem);
+        JOptionPane.showMessageDialog(null, "O programa possui arquivos corrompidos\n"+"Erro" + 0);
         System.exit(0);
     }
     

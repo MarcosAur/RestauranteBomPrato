@@ -5,11 +5,13 @@
  */
 package model.views;
 
+import java.text.ParseException;
 import javax.swing.JOptionPane;
 import model.entities.Cliente;
 import model.entities.ItemDePedido;
 import model.entities.Pedido;
 import model.services.FabricaItensDePedido;
+import model.services.GeradorComanda;
 
 /**
  *
@@ -20,8 +22,8 @@ public class TelaCardapio extends javax.swing.JFrame {
     /**
      * Creates new form TelaCardapio
      */
-    private Pedido pedidoAtual ;
-    
+    private Pedido pedidoAtual;
+
     public TelaCardapio(Cliente cliente) {
         initComponents();
         pedidoAtual = new Pedido(cliente);
@@ -104,27 +106,40 @@ public class TelaCardapio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jlsListaValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jlsListaValueChanged
-        int quantidade = Integer.parseInt(JOptionPane.showInputDialog("Informe a quantidade de Itens"));
-        ItemDePedido ordem = FabricaItensDePedido.gerarItemDePedido(this.jlsLista.getSelectedValue(),quantidade);
-        int decisao = JOptionPane.showConfirmDialog(null, ordem, "Adiconar", 0);
-        final int ESCOLHEU_SIM = 0;
-        if(decisao == ESCOLHEU_SIM){
-            pedidoAtual.addItem(ordem);
-        }else{
-            JOptionPane.showMessageDialog(null, "Produto Descartado", "Informação", 1);
+        String numeroDeProdutos = JOptionPane.showInputDialog("Informe a quantidade de Itens");
+        if ((numeroDeProdutos.matches("[0-9]*")) || (numeroDeProdutos == null)) {
+            int quantidade = Integer.parseInt(numeroDeProdutos);
+            ItemDePedido ordem = FabricaItensDePedido.gerarItemDePedido(this.jlsLista.getSelectedValue(), quantidade);
+            int decisao = JOptionPane.showConfirmDialog(null, ordem, "Adiconar", 0);
+            final int ESCOLHEU_SIM = 0;
+            if (decisao == ESCOLHEU_SIM) {
+                pedidoAtual.addItem(ordem);
+            } else {
+                JOptionPane.showMessageDialog(null, "Produto Descartado", "Informação", 1);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Valor não numérico", "Erro", 0);
         }
-        
+
     }//GEN-LAST:event_jlsListaValueChanged
 
     private void encerrarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_encerrarCompraActionPerformed
-        
+        pedidoAtual.comprar();
+        String notaFiscal = GeradorComanda.geradorNotaFiscal(pedidoAtual);
+        JOptionPane.showMessageDialog(null, notaFiscal);
+        GeradorComanda.gerarEmail(notaFiscal);
+        GeradorComanda.gerarLog(notaFiscal);
+        JOptionPane.showMessageDialog(null, "Obrigado pela Preferência\nO tempo estimado é de 2 horas");
+        System.exit(0);
+
     }//GEN-LAST:event_encerrarCompraActionPerformed
 
     private void verCarrinhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verCarrinhoActionPerformed
         String carrinho = "";
-        for (ItemDePedido ordem : pedidoAtual.getItemDePedido()){
+        for (ItemDePedido ordem : pedidoAtual.getItemDePedido()) {
             carrinho += ordem + "\n-------------------------\n";
         }
+        carrinho += "\nSubtotal: R$" + pedidoAtual.valorTotal();
         JOptionPane.showMessageDialog(null, carrinho, "Carrinho", 1);
     }//GEN-LAST:event_verCarrinhoActionPerformed
 

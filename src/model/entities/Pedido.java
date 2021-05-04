@@ -36,6 +36,15 @@ public class Pedido {
         }
 
     }
+    public double valorTotal(){
+        double valor = 0;
+        
+        for (ItemDePedido ordem : this.itemDePedido){
+            valor += ordem.subtotal();
+        }
+        
+        return valor;
+    }
     
     public void comprar(){
         this.momentoDaCompra = new Date();
