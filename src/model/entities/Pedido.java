@@ -16,7 +16,6 @@ public class Pedido {
 
     public Pedido(Cliente comprador) {
         this.comprador = comprador;
-        this.momentoDaCompra = new Date();
     }
 
     public List<ItemDePedido> getItemDePedido() {
@@ -36,6 +35,10 @@ public class Pedido {
             this.itemDePedido.add(item);
         }
 
+    }
+    
+    public void comprar(){
+        this.momentoDaCompra = new Date();
     }
 
     public void removerItem(ItemDePedido item) {

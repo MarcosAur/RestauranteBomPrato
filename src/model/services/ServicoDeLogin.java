@@ -17,7 +17,7 @@ public class ServicoDeLogin {
 
     private static List<Cliente> coletarInformacoes() {
         List<Cliente> dadosPessoais = new ArrayList<>();
-        File file = new File("../BancoDeDados/Clientes.txt");
+        File file = new File("BancoDeDados/Clientes.txt");
 
         try (Scanner sc = new Scanner(file)) {
             while (sc.hasNext()) {
