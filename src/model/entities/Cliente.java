@@ -20,6 +20,10 @@ public class Cliente {
         this.senha = senha;
     }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+    
     public Integer getId() {
         return id;
     }

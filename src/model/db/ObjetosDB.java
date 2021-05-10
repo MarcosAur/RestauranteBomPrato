@@ -51,7 +51,7 @@ public class ObjetosDB {
         }
     }
 
-    public static void closeSatement(Statement st) {
+    public static void closeStatement(Statement st) {
         if (st != null) {
             try {
                 st.close();

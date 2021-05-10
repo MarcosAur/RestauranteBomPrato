@@ -9,6 +9,6 @@ import model.entities.Cliente;
 public interface ClienteDao {
 
     public Cliente login(Cliente tentandoLogar);
-    public void cadastro(Cliente cadastrado);
+    public boolean cadastro(Cliente cadastrado);
     
 }

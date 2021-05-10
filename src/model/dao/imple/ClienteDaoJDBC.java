@@ -3,16 +3,20 @@ package model.dao.imple;
 import model.dao.ClienteDao;
 import model.entities.Cliente;
 import java.sql.PreparedStatement;
+import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.Connection;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import model.db.DbException;
 import model.db.ObjetosDB;
+
 /**
  *
  * @author marcos
  */
 public class ClienteDaoJDBC implements ClienteDao {
+
     private PreparedStatement pst;
     private Connection conec;
     private ResultSet rs;
@@ -20,38 +24,77 @@ public class ClienteDaoJDBC implements ClienteDao {
     public ClienteDaoJDBC() {
         conec = ObjetosDB.getConnection();
     }
-    
-    
-    
+
     @Override
     public Cliente login(Cliente tentandoLogar) {
         Cliente retorno = null;
         String comando = "SELECT * FROM Clientes "
-                                  + "WHERE nome = ? and senha = ?";
-        
-        try{
+                + "WHERE nome = ? and senha = ?";
+
+        try {
             pst = conec.prepareStatement(comando);
-            
-            pst.setString(1,tentandoLogar.getNome());
-            pst.setString(2,tentandoLogar.getSenha());
-            
+
+            pst.setString(1, tentandoLogar.getNome());
+            pst.setString(2, tentandoLogar.getSenha());
+
             rs = pst.executeQuery();
-            
-            if(rs.next()){
-                retorno = new Cliente(rs.getInt("id"),rs.getString("nome"),rs.getString("senha"),rs.getString("endereco"));
+
+            if (rs.next()) {
+                retorno = new Cliente(rs.getInt("id"), rs.getString("nome"), rs.getString("senha"), rs.getString("endereco"));
             }
-            
-        }catch(SQLException e){
+
+        } catch (SQLException e) {
             throw new DbException(e.getMessage());
+        } finally {
+            ObjetosDB.closeStatement(pst);
+            ObjetosDB.closeResultSet(rs);
         }
-        
+
         return retorno;
-        
+
     }
 
     @Override
-    public void cadastro(Cliente cadastrado) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean cadastro(Cliente cadastrar) {
+        if (cadastrar.getNome().equals("") && cadastrar.getSenha().equals("") && cadastrar.getEndereco().equals("")) {
+            JOptionPane.showMessageDialog(null, "Campos vazios", "Error", 0);
+            throw new DbException("Campos vazios");
+        }
+        try {
+            pst = conec.prepareStatement("INSERT INTO Clientes "
+                    + "(nome, endereco, senha) "
+                    + "VALUES "
+                    + "(?,?,?)",
+                    Statement.RETURN_GENERATED_KEYS);
+
+            pst.setString(1, cadastrar.getNome());
+            pst.setString(2, cadastrar.getEndereco());
+            pst.setString(3, cadastrar.getSenha());
+
+            int rowsAffected = pst.executeUpdate();
+
+            if (rowsAffected == 0) {
+                JOptionPane.showMessageDialog(null, "Erro ao cadastrar o cliente no sistema\nFavor tentar novamente", "Error", 0);
+                return false;
+            } else {
+                rs = pst.getGeneratedKeys();
+
+                if (rs.next()) {
+                    cadastrar.setId(rs.getInt(1));
+                }
+                JOptionPane.showMessageDialog(null, "Cadastrado com sucesso!\n" + cadastrar, "Cadastrado", 1);
+                return true;
+
+            }
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao cadastrar o cliente no sistema\nFavor tentar novamente", "Error", 0);
+            throw new DbException(e.getMessage());
+        } finally {
+            ObjetosDB.closeResultSet(rs);
+            ObjetosDB.closeStatement(pst);
+        }
+
     }
 
 }
