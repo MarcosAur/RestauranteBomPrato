@@ -65,11 +65,11 @@ public class LeitorDeCardapio {
 
     private static String acharCaminho(String tipoCardapio) throws IOException {
         if (tipoCardapio.replace(" ", "").equals("PratosPrincipais")) {
-            return "BancoDeDados/PratosPrincipais.txt";
+            return "../BancoDeDados/PratosPrincipais.txt";
         } else if (tipoCardapio.equals("Sobremesas")) {
-            return "BancoDeDados/Sobremesas.txt";
+            return "../BancoDeDados/Sobremesas.txt";
         } else if (tipoCardapio.equals("Sucos")) {
-            return "BancoDeDados/Sucos.txt";
+            return "../BancoDeDados/Sucos.txt";
         } else {
             String mensagemErro = "Arquivo \"" + tipoCardapio + "\" Inexestente";
             throw new IOException(mensagemErro);

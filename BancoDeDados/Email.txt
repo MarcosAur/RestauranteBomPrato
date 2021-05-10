@@ -1,18 +1,18 @@
-Id Cliente: 2
-Nome: Claudio dos Santos
-Endereço: Rua da UPA 2424
-Data: 04/05/2021 12:00:42
-Valor Total: R$224.0
+Id Cliente: 1
+Nome: Marcos Aurélio
+Endereço: Rua do Morro 315
+Data: 07/05/2021 12:33:29
+Valor Total: R$208.0
 Produtos: 
 Item: Baião de Dois
-Quantidade: 5
--------------------------
-Item: Batata Frita
 Quantidade: 4
--------------------------
-Item: Suco de Maracujá
-Quantidade: 5
 -------------------------
 Item: Camarão ao Alho e Óleo
 Quantidade: 3
+-------------------------
+Item: Batata Frita
+Quantidade: 3
+-------------------------
+Item: Suco de Maracujá
+Quantidade: 5
 -------------------------

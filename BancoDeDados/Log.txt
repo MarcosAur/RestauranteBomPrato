@@ -18,3 +18,23 @@ Quantidade: 3
 -------------------------
 
 
+Id Cliente: 1
+Nome: Marcos Aurélio
+Endereço: Rua do Morro 315
+Data: 07/05/2021 12:33:29
+Valor Total: R$208.0
+Produtos: 
+Item: Baião de Dois
+Quantidade: 4
+-------------------------
+Item: Camarão ao Alho e Óleo
+Quantidade: 3
+-------------------------
+Item: Batata Frita
+Quantidade: 3
+-------------------------
+Item: Suco de Maracujá
+Quantidade: 5
+-------------------------
+
+

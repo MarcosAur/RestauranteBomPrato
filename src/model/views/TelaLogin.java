@@ -96,8 +96,6 @@ public class TelaLogin extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Login ou senha invalidos");
         }
-
-
     }//GEN-LAST:event_btnLoginActionPerformed
 
     /**

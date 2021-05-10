@@ -4,8 +4,6 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import model.entities.ItemDePedido;
 import model.entities.Pedido;
 import model.exceptions.ArquivoCorrompidoException;
@@ -35,7 +33,7 @@ public class GeradorComanda {
 
     public static void gerarEmail(String nota) {
 
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter("BancoDeDados/Email.txt"))) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("../BancoDeDados/Email.txt"))) {
 
             bw.write(nota);
 
@@ -46,7 +44,7 @@ public class GeradorComanda {
     }
 
     public static void gerarLog(String nota) {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter("BancoDeDados/Log.txt",true))) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("../BancoDeDados/Log.txt",true))) {
 
             bw.write(nota);
             bw.newLine();
