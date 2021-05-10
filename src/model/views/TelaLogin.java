@@ -6,6 +6,8 @@
 package model.views;
 
 import javax.swing.JOptionPane;
+import model.dao.ClienteDao;
+import model.dao.DaoFactory;
 import model.entities.Cliente;
 import model.services.LeitorDeCardapio;
 import model.services.ServicoDeLogin;
@@ -86,7 +88,10 @@ public class TelaLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        Cliente clienteLogado = ServicoDeLogin.validarLogin(jtfLogin.getText(), jtfSenha.getText());
+        ClienteDao clienteDao = DaoFactory.createClienteDao();
+        
+        Cliente tentandoLogar = new Cliente(null,jtfLogin.getText(),jtfSenha.getText(),null);
+        Cliente clienteLogado = clienteDao.login(tentandoLogar);
 
         if (clienteLogado != null) {
             TelaCardapio telaCardapio = new TelaCardapio(clienteLogado);

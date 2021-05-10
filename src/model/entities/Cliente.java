@@ -40,6 +40,10 @@ public class Cliente {
         this.endereco = endereco;
     }
 
+    public String getSenha() {
+        return senha;
+    }
+
     @Override
     public int hashCode() {
         int hash = 5;
