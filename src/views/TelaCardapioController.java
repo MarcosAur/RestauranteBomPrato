@@ -16,11 +16,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javax.swing.JOptionPane;
 import model.dao.DaoFactory;
 import model.dao.ItemDao;
 import model.db.ObjetosDB;
@@ -68,7 +70,7 @@ public class TelaCardapioController implements Initializable {
     public void onBtnFinalizarAction() {
 
         String nota = pedido.comprar();
-        Alerts.showAlert("Nota Fiscal", null, nota, Alert.AlertType.CONFIRMATION);
+        JOptionPane.showMessageDialog(null,nota,"Confirmação de Pedido", 1);
         Scene scene = Programa.getScene();
         Stage stage = (Stage) scene.getWindow();
         stage.close();

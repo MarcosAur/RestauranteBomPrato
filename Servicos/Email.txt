@@ -1,0 +1,10 @@
+Id Cliente: 12
+Nome: Cliente Teste
+Endereço: Rua da Sua Casa 123
+Data: 16/05/2021 02:17:43
+Valor Total: R$24.0
+Produtos: 
+Item: Batata Frita
+Quantidade: 2
+Subtotal: R$24.0
+-------------------------
