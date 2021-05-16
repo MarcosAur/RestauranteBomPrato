@@ -7,9 +7,11 @@ import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.Connection;
 import java.sql.SQLException;
+import javafx.scene.control.Alert;
 import javax.swing.JOptionPane;
 import model.db.DbException;
 import model.db.ObjetosDB;
+import views.util.Alerts;
 
 /**
  *
@@ -74,7 +76,6 @@ public class ClienteDaoJDBC implements ClienteDao {
             int rowsAffected = pst.executeUpdate();
 
             if (rowsAffected == 0) {
-                JOptionPane.showMessageDialog(null, "Erro ao cadastrar o cliente no sistema\nFavor tentar novamente", "Error", 0);
                 return false;
             } else {
                 rs = pst.getGeneratedKeys();
@@ -82,13 +83,12 @@ public class ClienteDaoJDBC implements ClienteDao {
                 if (rs.next()) {
                     cadastrar.setId(rs.getInt(1));
                 }
-                JOptionPane.showMessageDialog(null, "Cadastrado com sucesso!\n" + cadastrar, "Cadastrado", 1);
                 return true;
 
             }
 
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro ao cadastrar o cliente no sistema\nFavor tentar novamente", "Error", 0);
+            Alerts.showAlert("Erro ao cadastrar", null, "Erro ao cadastrar cliente\nFavor tentar novamente", Alert.AlertType.ERROR);
             throw new DbException(e.getMessage());
         } finally {
             ObjetosDB.closeResultSet(rs);

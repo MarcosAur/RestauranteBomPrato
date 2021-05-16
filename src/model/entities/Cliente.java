@@ -20,6 +20,10 @@ public class Cliente {
         this.senha = senha;
     }
 
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
     public void setId(Integer id) {
         this.id = id;
     }
@@ -77,7 +81,8 @@ public class Cliente {
     @Override
     public String toString() {
         return "Cliente: " + id
-                + "\nNome: " + nome;
+                + "\nNome: " + nome
+                + "\nEndereco: " + endereco;
     }
 
 }

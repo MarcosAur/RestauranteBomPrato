@@ -1,6 +1,7 @@
 package model.entities;
 
 import java.util.Objects;
+import model.entities.enuns.TipoItens;
 
 /**
  *
@@ -9,15 +10,26 @@ import java.util.Objects;
 public class Item {
 
     private Integer id;
+    private TipoItens tipo;
     private String nome;
     private Double preco;
 
-    public Item(Integer id, String nome, Double preco) {
+    public Item(Integer id, TipoItens tipo, String nome, Double preco) {
         this.id = id;
+        this.tipo = tipo;
         this.nome = nome;
         this.preco = preco;
     }
 
+    public TipoItens getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TipoItens tipo) {
+        this.tipo = tipo;
+    }
+
+    
     public String getNome() {
         return nome;
     }
@@ -67,7 +79,8 @@ public class Item {
     public String toString() {
         return "ID: " + id
                 + "\nItem: " + nome
-                + "\nPreço: " + preco;
+                + "\nPreço: " + preco
+                + "\n" + tipo.toString();
     }
 
 }
