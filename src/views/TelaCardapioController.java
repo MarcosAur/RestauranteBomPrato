@@ -6,6 +6,7 @@
 package views;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -26,6 +27,8 @@ import model.entities.Item;
  * @author marcos
  */
 public class TelaCardapioController implements Initializable {
+    
+    private ItemDao itemDao = DaoFactory.createItemDao();
 
     @FXML
     private ListView LvCardapio;
@@ -59,16 +62,32 @@ public class TelaCardapioController implements Initializable {
     
     @FXML
     public void onBtnOkAction(){
+        if(!cbProduto.getSelectionModel().isEmpty()){
+            Item item = itemDao.procurarItem(cbProduto.getSelectionModel().getSelectedIndex() + 1);
+            System.out.println(item);
+            
+        }else{
+            System.out.println("Vazio");
+        }
         
     }
     
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        ItemDao itemDao = DaoFactory.createItemDao();
+        itemDao = DaoFactory.createItemDao();
         List<Item> itens = itemDao.procurarTudo();
         ObservableList<Item> cardapio = FXCollections.observableArrayList(itens);
+        
+        List<String> nomes = new ArrayList();
+        for(Item item : itens){
+            nomes.add(item.getNome());
+        }
+        
+        ObservableList<String> nomesPratos = FXCollections.observableArrayList(nomes);
+        
         LvCardapio.setItems(cardapio);
+        cbProduto.setItems(nomesPratos);
     }    
     
 }

@@ -77,7 +77,7 @@ public class Item {
 
     @Override
     public String toString() {
-        return "ID: " + id + " - " + nome + " - " + preco + " - " + tipo.toString();
+        return id + " - " + nome + " - R$" + String.format("%.2f",preco) + " - " + tipo.toString();
     }
 
 }

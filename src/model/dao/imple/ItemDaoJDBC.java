@@ -1,6 +1,5 @@
 package model.dao.imple;
 
-import java.io.IOException;
 import java.util.List;
 import model.dao.ItemDao;
 import model.entities.Item;
@@ -9,11 +8,11 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javafx.scene.control.Alert;
 import model.db.DbException;
 import model.db.ObjetosDB;
 import model.entities.enuns.TipoItens;
+import views.util.Alerts;
 
 /**
  *
@@ -58,7 +57,24 @@ public class ItemDaoJDBC implements ItemDao {
 
     @Override
     public Item procurarItem(Integer id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Item item = null;
+        String comando = "SELECT * FROM Pratos "
+                + "WHERE id = ?";
+
+        try {
+            pst = conn.prepareStatement(comando);
+            pst.setInt(1, id);
+            rs = pst.executeQuery();
+
+            if (rs.next()) {
+                item = instanciarItem(rs);
+            }
+
+        } catch (SQLException e) {
+            Alerts.showAlert("Erro no Banco", "Possivel Corrupção de dados", e.getMessage(), Alert.AlertType.NONE);
+        }
+
+        return item;
     }
 
     @Override
@@ -71,7 +87,7 @@ public class ItemDaoJDBC implements ItemDao {
             rs = pst.executeQuery();
 
             while (rs.next()) {
-                Item item = new Item(rs.getInt("id"), TipoItens.valueOf(rs.getString("tipo")), rs.getString("nome"), rs.getDouble("valor"));
+                Item item = instanciarItem(rs);
                 cardapio.add(item);
             }
 
@@ -81,6 +97,10 @@ public class ItemDaoJDBC implements ItemDao {
 
         return cardapio;
 
+    }
+    
+    private Item instanciarItem(ResultSet rs) throws SQLException{
+        return new Item(rs.getInt("id"), TipoItens.valueOf(rs.getString("tipo")), rs.getString("nome"), rs.getDouble("valor"));
     }
 
 }
