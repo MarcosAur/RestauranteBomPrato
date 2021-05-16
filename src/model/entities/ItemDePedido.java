@@ -38,7 +38,8 @@ public class ItemDePedido {
     @Override
     public String toString() {
         return  "Item: "+ this.getItem().getNome()+
-                "\nQuantidade: " + this.getQuantidadeDeItens();
+                "\nQuantidade: " + this.getQuantidadeDeItens()+
+                "\nSubtotal: R$" + subtotal() ;
     }
     
     

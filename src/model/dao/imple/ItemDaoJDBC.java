@@ -51,6 +51,8 @@ public class ItemDaoJDBC implements ItemDao {
 
         } catch (SQLException ex) {
             throw new DbException(ex.getMessage());
+        } finally {
+            fecharTudo();
         }
 
     }
@@ -72,6 +74,8 @@ public class ItemDaoJDBC implements ItemDao {
 
         } catch (SQLException e) {
             Alerts.showAlert("Erro no Banco", "Possivel Corrupção de dados", e.getMessage(), Alert.AlertType.NONE);
+        }finally{
+            fecharTudo();
         }
 
         return item;
@@ -93,14 +97,21 @@ public class ItemDaoJDBC implements ItemDao {
 
         } catch (SQLException e) {
             throw new DbException(e.getMessage());
+        } finally {
+            fecharTudo();
         }
 
         return cardapio;
 
     }
-    
-    private Item instanciarItem(ResultSet rs) throws SQLException{
+
+    private Item instanciarItem(ResultSet rs) throws SQLException {
         return new Item(rs.getInt("id"), TipoItens.valueOf(rs.getString("tipo")), rs.getString("nome"), rs.getDouble("valor"));
+    }
+
+    private void fecharTudo() {
+        ObjetosDB.closeResultSet(rs);
+        ObjetosDB.closeStatement(pst);
     }
 
 }

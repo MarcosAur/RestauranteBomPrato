@@ -1,8 +1,10 @@
 package model.entities;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import model.services.GeradorComanda;
 
 /**
  *
@@ -30,6 +32,11 @@ public class Pedido {
         return momentoDaCompra;
     }
 
+    public void setComprador(Cliente comprador) {
+        this.comprador = comprador;
+    }
+    
+
     public void addItem(ItemDePedido item) {
         if (item != null) {
             this.itemDePedido.add(item);
@@ -46,8 +53,10 @@ public class Pedido {
         return valor;
     }
     
-    public void comprar(){
+    public String comprar(){
         this.momentoDaCompra = new Date();
+        return GeradorComanda.geradorNotaFiscal(this);
+        
     }
 
     public void removerItem(ItemDePedido item) {
@@ -56,5 +65,26 @@ public class Pedido {
         }
 
     }
+
+    @Override
+    public String toString() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        
+        String produtos = "";
+        
+        for (ItemDePedido oi : itemDePedido ){
+            produtos += oi + "\n";
+        }
+        String msg = "Cliente: " + comprador.getNome()
+                   + "Momento da Compra: " + sdf.format(this.momentoDaCompra)
+                   + "Produtos: " + produtos
+                   + "Valor Total: R$" + this.valorTotal();
+        
+        
+        
+        return msg;
+    }
+    
+    
 
 }

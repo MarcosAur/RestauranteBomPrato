@@ -5,6 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.entities.Pedido;
+import views.util.MudarTela;
 
 /**
  *
@@ -13,7 +15,8 @@ import javafx.stage.Stage;
 public class Programa extends Application {
 
     private static Scene scene;
-    
+    private static Pedido pedido = new Pedido(null);
+    public static MudarTela mudarTela = new MudarTela();
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -24,12 +27,21 @@ public class Programa extends Application {
         stage.setTitle("Restaurante Bom Prato");
         stage.show();
     }
-    
-    public static Scene getScene(){
+
+    public static Scene getScene() {
         return scene;
+    }
+
+    public static Pedido getPedido() {
+        return pedido;
+    }
+
+    public static void setPedido(Pedido p) {
+        pedido = p;
     }
 
     public static void main(String[] args) {
         launch(args);
     }
+
 }

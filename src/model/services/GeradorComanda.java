@@ -27,13 +27,15 @@ public class GeradorComanda {
                 + "\nValor Total: R$" + pedido.valorTotal()
                 + "\nProdutos: \n"
                 + itens;
-
+        
+        gerarEmail(notaFiscal);
+        gerarLog(notaFiscal);
         return notaFiscal;
     }
 
     public static void gerarEmail(String nota) {
 
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter("../BancoDeDados/Email.txt"))) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("./BancoDeDados/Email.txt"))) {
 
             bw.write(nota);
 
@@ -44,7 +46,7 @@ public class GeradorComanda {
     }
 
     public static void gerarLog(String nota) {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter("../BancoDeDados/Log.txt",true))) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("./BancoDeDados/Log.txt",true))) {
 
             bw.write(nota);
             bw.newLine();

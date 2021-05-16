@@ -1,5 +1,6 @@
 package views;
 
+import application.Programa;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -12,7 +13,6 @@ import model.dao.ClienteDao;
 import model.dao.DaoFactory;
 import model.entities.Cliente;
 import views.util.Alerts;
-import views.util.MudarTela;
 
 /**
  * FXML Controller class
@@ -20,8 +20,6 @@ import views.util.MudarTela;
  * @author marcos
  */
 public class TelaLoginController implements Initializable {
-    
-    private MudarTela mudarTela = new MudarTela();
 
     @FXML
     private Button btnCadastro;
@@ -39,9 +37,10 @@ public class TelaLoginController implements Initializable {
     public void onBtnLoginAction() {
         ClienteDao clienteDao = DaoFactory.createClienteDao();
         Cliente cliente = clienteDao.login(new Cliente(null, tfLogin.getText(), tfSenha.getText(), null));
-        
+
         if (cliente != null) {
-            mudarTela.loadView("/views/TelaCardapio.fxml");
+            Programa.getPedido().setComprador(cliente);
+            Programa.mudarTela.loadView("/views/TelaCardapio.fxml");
         } else {
             String msg = "O cliente com os dados informados\nnão foi encontrado";
             Alerts.showAlert("Erro", "Cliente inexistenexistete", msg, Alert.AlertType.ERROR);
@@ -50,7 +49,7 @@ public class TelaLoginController implements Initializable {
 
     @FXML
     public void onBtnCadastroAction() {
-        mudarTela.loadView("/views/TelaCadastro.fxml");
+        Programa.mudarTela.loadView("/views/TelaCadastro.fxml");
     }
 
     @Override
