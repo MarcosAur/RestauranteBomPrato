@@ -1,4 +1,0 @@
-1,Marcos Aurélio,Rodaju120$,Rua do Morro 315
-2,Claudio dos Santos,Testudo123,Rua da UPA 2424
-3,Matheus Pascoal,Cibele321,Rua A do Pau Finin 6969
-4,a,,qualquer lugar 123

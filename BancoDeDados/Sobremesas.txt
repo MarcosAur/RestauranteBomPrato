@@ -1,4 +1,0 @@
-5,Sorvete de Creme,12.60
-6,Açaí,19.85
-7,Cocada,4.00
-8,Paçoca,7.00

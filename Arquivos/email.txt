@@ -1,6 +1,0 @@
-Name: Marcos Aurelio
-Address: Rua do Morro 315
-Total Value: 70.0
-Products:
-4 - Arroz - $40.0
-2 - Feijão - $30.0

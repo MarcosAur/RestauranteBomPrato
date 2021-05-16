@@ -1,4 +1,0 @@
-1,Macarronada,15.00
-2,Camarão ao Alho e Óleo,25.00
-3,Baião de Dois,10.00
-4,Batata Frita,6.00

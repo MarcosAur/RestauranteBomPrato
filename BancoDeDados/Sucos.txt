@@ -1,4 +1,0 @@
-9,Suco de Manga,10.00
-10,Suco de Goiaba,13.50
-11,Suco de Maracujá,15.00
-12,Suco de Graviola,9.00
