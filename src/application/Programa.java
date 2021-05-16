@@ -13,10 +13,10 @@ import javafx.stage.Stage;
 public class Programa extends Application {
 
     private static Scene scene;
-    private Stage stage = new Stage();
+    
 
     @Override
-    public void start(Stage stage2) throws Exception {
+    public void start(Stage stage) throws Exception {
         Parent parent = FXMLLoader.load(getClass().getResource("/views/TelaLogin.fxml"));
         scene = new Scene(parent);
         stage.setScene(scene);

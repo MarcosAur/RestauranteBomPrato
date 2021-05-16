@@ -32,7 +32,7 @@ public class MudarTela {
             
         } catch (IOException ex) {
             Alerts.showAlert("Open Error", "Error: ", ex.getMessage(), Alert.AlertType.ERROR);
-            System.out.println(ex.getMessage());
+            ex.printStackTrace();
         }
         
     }

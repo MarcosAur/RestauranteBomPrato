@@ -77,10 +77,7 @@ public class Item {
 
     @Override
     public String toString() {
-        return "ID: " + id
-                + "\nItem: " + nome
-                + "\nPreço: " + preco
-                + "\n" + tipo.toString();
+        return "ID: " + id + " - " + nome + " - " + preco + " - " + tipo.toString();
     }
 
 }

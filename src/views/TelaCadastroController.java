@@ -33,45 +33,42 @@ public class TelaCadastroController implements Initializable {
 
     @FXML
     private VBox vbox;
-    
+
     @FXML
     private TextField tfLogin;
-    
+
     @FXML
     private PasswordField tfSenha;
-    
+
     @FXML
     private TextField tfEndereco;
-    
+
     @FXML
     private Button btnCadastrar;
-    
+
     @FXML
-    public void onBtnCadastrarAction() throws Exception{
+    public void onBtnCadastrarAction() throws Exception {
         ClienteDao clienteDao = DaoFactory.createClienteDao();
         Cliente cadastrado = new Cliente(null, tfLogin.getText(), tfSenha.getText(), tfEndereco.getText());
-        
+
         boolean cadastrou = clienteDao.cadastro(cadastrado);
-        
-        if(cadastrou){
+
+        if (cadastrou) {
             Scene scene = Programa.getScene();
-            Stage stage = (Stage)scene.getWindow();
+            Stage stage = (Stage) scene.getWindow();
             stage.close();
             Programa programa = new Programa();
             programa.start(new Stage());
             Alerts.showAlert("Cliente Cadastrado", "Informações", cadastrado.toString(), Alert.AlertType.CONFIRMATION);
-        }else{
+        } else {
             Alerts.showAlert("Erro ao cadastrar", null, "Favor tentar novamente", Alert.AlertType.ERROR);
             throw new DbException("Arquivo Corrompido");
         }
-        
-        
+
     }
-    
-    
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-    }    
-    
+    }
+
 }
