@@ -1,10 +1,14 @@
-Id Cliente: 12
-Nome: Cliente Teste
-Endereço: Rua da Sua Casa 123
-Data: 16/05/2021 02:17:43
-Valor Total: R$24.0
+Id Cliente: 1
+Nome: Marcos
+Endereço: Rua do Morro 315
+Data: 20/05/2021 12:56:13
+Valor Total: R$68.0
 Produtos: 
-Item: Batata Frita
-Quantidade: 2
-Subtotal: R$24.0
+Item: Maracujá
+Quantidade: 3
+Subtotal: R$18.0
+-------------------------
+Item: Macarrão
+Quantidade: 5
+Subtotal: R$50.0
 -------------------------

@@ -18,7 +18,7 @@ public class ObjetosDB {
     private static Connection conec;
 
     private static Properties loadProperties() {
-        try (FileInputStream is = new FileInputStream("db.properties")) {
+        try (FileInputStream is = new FileInputStream("../db.properties")) {
 
             Properties props = new Properties();
             props.load(is);

@@ -31,3 +31,31 @@ Subtotal: R$24.0
 -------------------------
 
 
+Id Cliente: 1
+Nome: Marcos
+Endereço: Rua do Morro 315
+Data: 18/05/2021 12:46:01
+Valor Total: R$18.0
+Produtos: 
+Item: Maracujá
+Quantidade: 3
+Subtotal: R$18.0
+-------------------------
+
+
+Id Cliente: 1
+Nome: Marcos
+Endereço: Rua do Morro 315
+Data: 20/05/2021 12:56:13
+Valor Total: R$68.0
+Produtos: 
+Item: Maracujá
+Quantidade: 3
+Subtotal: R$18.0
+-------------------------
+Item: Macarrão
+Quantidade: 5
+Subtotal: R$50.0
+-------------------------
+
+
